@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+
+
+<h2>
+📄 Clinical Reports
+</h2>
+
+
+<div class="card p-4">
+
+
+<h5>
+Generated Reports
+</h5>
+
+
+<table class="table">
+
+
+<tr>
+
+<th>
+Report File
+</th>
+
+</tr>
+
+
+{% for r in reports %}
+
+<tr>
+
+<td>
+{{r}}
+</td>
+
+</tr>
+
+{% endfor %}
+
+
+</table>
+
+
+</div>
+
+
+{% endblock %}

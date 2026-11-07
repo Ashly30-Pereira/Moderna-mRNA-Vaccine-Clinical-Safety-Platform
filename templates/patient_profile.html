@@ -1,0 +1,118 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">
+Patient Profile
+</h2>
+
+
+<div class="card p-4">
+
+<h4>
+Patient ID : {{ patient.Patient_ID }}
+</h4>
+
+<hr>
+
+
+<div class="row">
+
+
+<div class="col-md-6 mb-3">
+
+<strong>Age</strong>
+
+<br>
+
+{{ patient.Age }}
+
+</div>
+
+
+
+<div class="col-md-6 mb-3">
+
+<strong>Biomarker Level</strong>
+
+<br>
+
+{{ patient.Biomarker_Level }}
+
+</div>
+
+
+
+<div class="col-md-6 mb-3">
+
+<strong>Pre Existing Condition</strong>
+
+<br>
+
+{{ patient.Pre_Existing_Conditions }}
+
+</div>
+
+
+
+<div class="col-md-6 mb-3">
+
+<strong>Vaccine Dose</strong>
+
+<br>
+
+{{ patient.Vaccine_Dose_mcg }} mcg
+
+</div>
+
+
+
+<div class="col-md-6 mb-3">
+
+<strong>Previous Reaction</strong>
+
+<br>
+
+{{ patient.Prior_Reaction_History }}
+
+</div>
+
+
+
+<div class="col-md-6 mb-3">
+
+<strong>Reaction Score</strong>
+
+<br>
+
+{{ patient.Reaction_Score }}
+
+</div>
+
+
+</div>
+
+
+<hr>
+
+
+<a href="/patients"
+class="btn btn-secondary">
+
+Back
+
+</a>
+
+
+<a href="/predict/{{ patient.Patient_ID }}"
+class="btn btn-success">
+
+🤖 Predict Risk
+
+</a>
+
+
+</div>
+
+
+{% endblock %}

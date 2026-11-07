@@ -1,0 +1,127 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Patient Records</h2>
+</div>
+
+<div class="card p-4">
+    <div class="row mb-3">
+    <div class="col-md-6">
+        <input type="text"
+               id="searchInput"
+               class="form-control"
+               placeholder="Search by Patient ID...">
+    </div>
+</div>
+
+    <table class="table table-hover" id="patientTable">
+        <thead class="table-primary">
+
+            <tr>
+
+                <th>Patient ID</th>
+
+                <th>Age</th>
+
+                <th>Biomarker</th>
+
+                <th>Pre-existing Conditions</th>
+
+                <th>Vaccine Dose</th>
+
+                <th>Previous Reaction</th>
+
+                <th>Reaction Score</th>
+
+                <th>Action</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for patient in patients %}
+
+            <tr>
+
+                <td>{{ patient.Patient_ID }}</td>
+
+                <td>{{ patient.Age }}</td>
+
+                <td>{{ patient.Biomarker_Level }}</td>
+
+                <td>{{ patient.Pre_Existing_Conditions }}</td>
+
+                <td>{{ patient.Vaccine_Dose_mcg }} mcg</td>
+
+                <td>{{ patient.Prior_Reaction_History }}</td>
+
+                <td>
+
+                    {% if patient.Reaction_Score == 1 %}
+                        <span class="badge bg-danger">High Risk</span>
+                    {% else %}
+                        <span class="badge bg-success">Low Risk</span>
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    <a href="/patient/{{ patient.Patient_ID }}"
+                       class="btn btn-primary btn-sm">
+
+                        <i class="fas fa-eye"></i> View
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<script>
+document.getElementById("searchInput").addEventListener("keyup", function () {
+
+    let filter = this.value.toUpperCase();
+
+    let table = document.getElementById("patientTable");
+
+    let tr = table.getElementsByTagName("tr");
+
+    for (let i = 1; i < tr.length; i++) {
+
+        let td = tr[i].getElementsByTagName("td")[0];
+
+        if (td) {
+
+            let txt = td.textContent || td.innerText;
+
+            if (txt.toUpperCase().indexOf(filter) > -1) {
+
+                tr[i].style.display = "";
+
+            } else {
+
+                tr[i].style.display = "none";
+
+            }
+
+        }
+
+    }
+
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2>
+💉 Dosage Intelligence
+</h2>
+
+
+<div class="card p-4">
+
+
+<h5>
+Select Patient for Dosage Analysis
+</h5>
+
+
+<table class="table table-hover">
+
+
+<tr>
+
+<th>
+Patient ID
+</th>
+
+<th>
+Age
+</th>
+
+<th>
+Action
+</th>
+
+</tr>
+
+
+{% for p in patients %}
+
+<tr>
+
+<td>
+{{p.Patient_ID}}
+</td>
+
+
+<td>
+{{p.Age}}
+</td>
+
+
+<td>
+
+<a href="/dosage/{{p.Patient_ID}}"
+class="btn btn-primary btn-sm">
+
+Analyze Dosage
+
+</a>
+
+</td>
+
+
+</tr>
+
+{% endfor %}
+
+
+</table>
+
+
+</div>
+
+
+{% endblock %}

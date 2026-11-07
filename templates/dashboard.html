@@ -1,0 +1,153 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">
+Dashboard
+</h2>
+
+<div class="row">
+
+<div class="col-md-3">
+<div class="card p-4 text-center">
+<h6>Total Patients</h6>
+<h2>{{ total_patients }}</h2>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card p-4 text-center">
+<h6>High Risk</h6>
+<h2 class="text-danger">{{ high_risk }}</h2>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card p-4 text-center">
+<h6>Low Risk</h6>
+<h2 class="text-success">{{ low_risk }}</h2>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card p-4 text-center">
+<h6>Average Age</h6>
+<h2>{{ avg_age }}</h2>
+</div>
+</div>
+
+</div>
+
+<br>
+
+<div class="row">
+
+<div class="col-md-5">
+
+<div class="card p-3">
+
+<h5 class="mb-3">
+Risk Distribution
+</h5>
+
+<canvas id="riskChart"></canvas>
+
+</div>
+
+</div>
+
+<div class="col-md-7">
+
+<div class="card p-3">
+
+<h5>
+Recent Patients
+</h5>
+
+<table class="table table-hover">
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>Age</th>
+
+<th>Dose</th>
+
+<th>Risk</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for p in recent_patients %}
+
+<tr>
+
+<td>{{ p.Patient_ID }}</td>
+
+<td>{{ p.Age }}</td>
+
+<td>{{ p.Vaccine_Dose_mcg }}</td>
+
+<td>
+
+{% if p.Reaction_Score==1 %}
+
+<span class="badge bg-danger">
+High
+</span>
+
+{% else %}
+
+<span class="badge bg-success">
+Low
+</span>
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const ctx=document.getElementById('riskChart');
+
+new Chart(ctx,{
+
+type:'pie',
+
+data:{
+
+labels:['High Risk','Low Risk'],
+
+datasets:[{
+
+data:[{{ high_risk }},{{ low_risk }}]
+
+}]
+
+}
+
+});
+
+</script>
+
+{% endblock %}

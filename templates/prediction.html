@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">
+AI Risk Prediction
+</h2>
+
+
+<div class="card p-4">
+
+
+<h4>
+Patient ID:
+{{ patient.Patient_ID }}
+</h4>
+
+
+<hr>
+
+
+<h5>
+Predicted Safety Risk
+</h5>
+
+
+{% if risk == "High Risk" %}
+
+<h2 class="text-danger">
+⚠ {{ risk }}
+</h2>
+
+{% else %}
+
+<h2 class="text-success">
+✔ {{ risk }}
+</h2>
+
+{% endif %}
+
+
+
+<h5 class="mt-4">
+Confidence Score
+</h5>
+
+<h3>
+{{ confidence }} %
+</h3>
+
+
+<hr>
+
+
+<h5>
+Clinical Interpretation
+</h5>
+
+<p>
+
+The AI model analyzed patient age, biomarker level,
+medical conditions, vaccine dosage, and previous
+reaction history to estimate potential safety risk.
+
+</p>
+
+
+<div class="alert alert-warning">
+
+<strong>Note:</strong>
+This prediction is a clinical decision support output
+and does not replace professional medical evaluation.
+
+</div>
+
+
+<a href="/patients"
+class="btn btn-secondary">
+
+Back to Patients
+
+</a>
+
+<a href="/dosage/{{ patient.Patient_ID }}"
+class="btn btn-primary">
+
+💉 Dosage Recommendation
+
+</a>
+
+
+</div>
+
+
+{% endblock %}

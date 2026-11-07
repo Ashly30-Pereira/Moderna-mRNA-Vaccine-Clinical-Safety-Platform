@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<h2>
+🧠 AI Risk Prediction
+</h2>
+
+
+<div class="row mt-4">
+
+
+<div class="col-md-4">
+
+<div class="card p-4 text-center">
+
+<h5>
+Total Patients
+</h5>
+
+<h1>
+{{total}}
+</h1>
+
+</div>
+
+</div>
+
+
+<div class="col-md-4">
+
+<div class="card p-4 text-center">
+
+<h5>
+High Risk Patients
+</h5>
+
+<h1 class="text-danger">
+{{high_risk}}
+</h1>
+
+</div>
+
+</div>
+
+
+
+<div class="col-md-4">
+
+<div class="card p-4 text-center">
+
+<h5>
+Low Risk Patients
+</h5>
+
+<h1 class="text-success">
+{{low_risk}}
+</h1>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<br>
+
+
+<div class="card p-4">
+
+
+<h4>
+AI Model Information
+</h4>
+
+
+<p>
+The platform uses a Random Forest Machine Learning model
+to analyze patient characteristics, biomarkers, medical
+conditions, vaccine dosage and previous reaction history.
+</p>
+
+
+<ul>
+
+<li>
+Data preprocessing and encoding
+</li>
+
+<li>
+Machine Learning based risk classification
+</li>
+
+<li>
+Confidence score generation
+</li>
+
+<li>
+Clinical decision support
+</li>
+
+</ul>
+
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,207 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<h2>
+📊 Clinical Analytics
+</h2>
+
+
+<div class="row mt-4">
+
+
+<div class="col-md-6">
+
+<div class="card p-3">
+
+<h5>
+Risk Distribution
+</h5>
+
+<canvas id="riskChart"></canvas>
+
+</div>
+
+</div>
+
+
+
+<div class="col-md-6">
+
+<div class="card p-3">
+
+<h5>
+Age Distribution
+</h5>
+
+<canvas id="ageChart"></canvas>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<div class="row mt-4">
+
+
+<div class="col-md-6">
+
+<div class="card p-3">
+
+<h5>
+Dosage Distribution
+</h5>
+
+<canvas id="doseChart"></canvas>
+
+</div>
+
+</div>
+
+
+
+<div class="col-md-6">
+
+<div class="card p-4 text-center">
+
+<h5>
+Average Biomarker Level
+</h5>
+
+<h1>
+{{ biomarker_average }}
+</h1>
+
+<p>
+Average biomarker value among
+500 registered patients
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+console.log("Analytics loaded");
+
+
+new Chart(
+document.getElementById("riskChart"),
+{
+
+type:"pie",
+
+data:{
+
+labels:[
+"High Risk",
+"Low Risk"
+],
+
+datasets:[{
+
+data:[
+
+{{ risk_data["High Risk"] }},
+{{ risk_data["Low Risk"] }}
+
+]
+
+}]
+
+}
+
+}
+
+);
+
+
+
+new Chart(
+document.getElementById("ageChart"),
+{
+
+type:"bar",
+
+data:{
+
+labels:[
+
+"20-40",
+"40-60",
+"60+"
+
+],
+
+datasets:[{
+
+label:"Patients",
+
+data:[
+
+{{ age_data["20-40"] }},
+{{ age_data["40-60"] }},
+{{ age_data["60+"] }}
+
+]
+
+}]
+
+}
+
+}
+
+);
+
+
+
+new Chart(
+document.getElementById("doseChart"),
+{
+
+type:"doughnut",
+
+data:{
+
+labels:[
+
+"Low Dose",
+"Standard Dose",
+"High Dose"
+
+],
+
+datasets:[{
+
+data:[
+
+{{ dose_data["Low Dose"] }},
+{{ dose_data["Standard Dose"] }},
+{{ dose_data["High Dose"] }}
+
+]
+
+}]
+
+}
+
+}
+
+);
+
+
+</script>
+
+
+{% endblock %}

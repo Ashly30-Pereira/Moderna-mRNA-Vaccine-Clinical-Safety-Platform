@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">
+Dosage Intelligence
+</h2>
+
+<div class="card p-4">
+
+<h4>Patient ID : {{ patient.Patient_ID }}</h4>
+
+<hr>
+
+<h5>Predicted Risk</h5>
+
+{% if risk=="High Risk" %}
+
+<div class="alert alert-danger">
+{{ risk }}
+</div>
+
+{% else %}
+
+<div class="alert alert-success">
+{{ risk }}
+</div>
+
+{% endif %}
+
+<h5>Confidence</h5>
+
+<h3>{{ confidence }}%</h3>
+
+<hr>
+
+<h5>Recommended Dosage</h5>
+
+<div class="alert alert-primary">
+
+<h4>{{ dosage }}</h4>
+
+</div>
+
+<h5>Clinical Recommendation</h5>
+
+<p>
+
+{{ recommendation }}
+
+</p>
+
+<a href="/patients"
+class="btn btn-secondary">
+
+Back
+
+</a>
+
+<a href="/report/{{ patient.Patient_ID }}"
+class="btn btn-success">
+
+📄 Download Clinical Report
+
+</a>
+
+</div>
+
+{% endblock %}
